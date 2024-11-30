@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block title %}Home - Document GPT{% endblock %}
+
+{% block content %}
+<div class="max-w-4xl mx-auto">
+    <div class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+        <h1 class="text-2xl font-bold mb-6">Ask Questions About Documents</h1>
+        
+        <div class="mb-8">
+            <form id="questionForm" class="space-y-4">
+                <div>
+                    <label class="block text-gray-700 text-sm font-bold mb-2" for="question">
+                        Your Question
+                    </label>
+                    <textarea 
+                        id="question" 
+                        name="question" 
+                        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                        rows="3"
+                        placeholder="Ask a question about the uploaded documents..."></textarea>
+                </div>
+                <div>
+                    <button 
+                        type="submit" 
+                        class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+                        Ask Question
+                    </button>
+                </div>
+            </form>
+        </div>
+
+        <div id="answerSection" class="hidden">
+            <h2 class="text-xl font-semibold mb-4">Answer:</h2>
+            <div id="answer" class="bg-gray-50 rounded p-4 mb-4"></div>
+            
+            <h3 class="text-lg font-semibold mb-2">Sources:</h3>
+            <div id="sources" class="space-y-2"></div>
+        </div>
+
+        <div id="loadingIndicator" class="hidden">
+            <div class="flex justify-center items-center">
+                <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-500"></div>
+                <span class="ml-2">Processing your question...</span>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

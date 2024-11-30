@@ -1,0 +1,26 @@
+version: '3.3'
+
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: doc_gpt_web
+    restart: unless-stopped
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./app/static/documents:/app/app/static/documents
+      - ./app/static/index:/app/app/static/index
+    environment:
+      - FLASK_APP=wsgi:application
+      - FLASK_ENV=production
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - SECRET_KEY=${SECRET_KEY}
+      - PYTHONPATH=/app
+    networks:
+      - doc_gpt_network
+
+networks:
+  doc_gpt_network:
+    driver: bridge
